@@ -36,11 +36,12 @@ namespace Puzzel_game
             blocks.Clear();
             ui = new ui();
 
-            blocks.Add(new block(grid(10), -32, 1, 2));
+            
             blocks.Add(new block(grid(11), 480-64-32, 1, 2));
             blocks.Add(new block(grid(11), 480 - 64-64-64, 1, 2));
             blocks.Add(new block(grid(11), 480 - 64 - 64, 1, 2));
             blocks.Add(new block(grid(10), 480 - 64 - 64 - 64 - 64, 1, 2));
+            blocks.Add(new block(grid(10), -32, 1, 2));
             //for (int i = 0; i < 13; i++)
             //{
             //    blocks.Add(new block(grid(9), i * 32, 1, 1));
@@ -66,6 +67,8 @@ namespace Puzzel_game
         {
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
+            if (Keyboard.GetState().IsKeyDown(Keys.F1))
+                Initialize();
 
             foreach(block b in blocks)
             {
@@ -95,8 +98,8 @@ namespace Puzzel_game
 
             spriteBatch.Begin();
             drawGrid();
-            ui.draw(spritesheet, spriteBatch);
             foreach (block b in blocks) { b.drawSprite(spriteBatch, spritesheet, b.color); }
+            ui.draw(spritesheet, spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

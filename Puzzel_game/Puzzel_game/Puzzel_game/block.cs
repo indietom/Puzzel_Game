@@ -77,26 +77,29 @@ namespace Puzzel_game
                 {
                     //cantMoveY = false;
                 }
-                if(x + 32 == b.x && y == b.y && active)
+                if (x + 32 == b.x && y == b.y && active || x + Game1.grid(1) == Game1.grid(15) && active)
                 {
+                    imx = 400;
                     cantMoveL = true;
                 }
                 else
                 {
-                    if (b.active)
+                    if (b.active && !active)
                     {
+                        imx = 1;
                         cantMoveL = false;
                     }
                 }
-                if (x - 32 == b.x && y == b.y && active)
+                if (x - 32 == b.x && y == b.y && active || x - Game1.grid(1) == Game1.grid(4) && active)
                 {
-                    Console.WriteLine("can't move right");
+                    imx = 400;
                     cantMoveR = true;
                 }
                 else
                 {
-                    if (b.active)
+                    if (b.active && !active)
                     {
+                        imx = 1;
                         cantMoveR = false;
                     }
                 }
