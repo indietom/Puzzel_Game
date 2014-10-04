@@ -79,30 +79,14 @@ namespace Puzzel_game
                 }
                 if (x + 32 == b.x && y == b.y && active || x + Game1.grid(1) == Game1.grid(15) && active)
                 {
-                    imx = 400;
                     cantMoveL = true;
                 }
-                else
-                {
-                    if (b.active && !active)
-                    {
-                        imx = 1;
-                        cantMoveL = false;
-                    }
-                }
+                
                 if (x - 32 == b.x && y == b.y && active || x - Game1.grid(1) == Game1.grid(4) && active)
                 {
-                    imx = 400;
                     cantMoveR = true;
                 }
-                else
-                {
-                    if (b.active && !active)
-                    {
-                        imx = 1;
-                        cantMoveR = false;
-                    }
-                }
+                
             }
             if(cantMoveY)
             {
@@ -125,10 +109,14 @@ namespace Puzzel_game
                 if (keyboard.IsKeyDown(left) && prevKeyboard.IsKeyUp(left) && !cantMoveY && !cantMoveR)
                 {
                     x -= Game1.grid(1);
+                    if (cantMoveL)
+                        cantMoveL = false;
                 }
                 if (keyboard.IsKeyDown(right) && prevKeyboard.IsKeyUp(right) && !cantMoveY && !cantMoveL)
                 {
                     x += Game1.grid(1);
+                    if (cantMoveR)
+                        cantMoveR = false;
                 }
             }
         }
