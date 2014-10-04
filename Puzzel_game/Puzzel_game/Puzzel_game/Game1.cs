@@ -36,10 +36,15 @@ namespace Puzzel_game
             blocks.Clear();
             ui = new ui();
 
-            blocks.Add(new block(grid(12), 0, 1, 1));
-            blocks.Add(new block(grid(12), grid(-3), 1, 3));
-            blocks.Add(new block(grid(10), grid(-3), 1, 2));
-
+            blocks.Add(new block(grid(10), -32, 1, 2));
+            blocks.Add(new block(grid(11), 480-64-32, 1, 2));
+            blocks.Add(new block(grid(11), 480 - 64-64-64, 1, 2));
+            blocks.Add(new block(grid(11), 480 - 64 - 64, 1, 2));
+            blocks.Add(new block(grid(10), 480 - 64 - 64 - 64 - 64, 1, 2));
+            //for (int i = 0; i < 13; i++)
+            //{
+            //    blocks.Add(new block(grid(9), i * 32, 1, 1));
+            //}
             base.Initialize();
         }
 
@@ -59,7 +64,7 @@ namespace Puzzel_game
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
             foreach(block b in blocks)

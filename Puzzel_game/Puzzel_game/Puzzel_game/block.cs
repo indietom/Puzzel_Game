@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace Puzzel_game
 {
@@ -21,9 +22,19 @@ namespace Puzzel_game
         sbyte colorType;
 
         bool active;
+
         bool cantMoveY;
+        bool cantMoveR;
+        bool cantMoveL;
 
         public Color color {get; set;}
+
+        public Keys left;
+        public Keys right;
+        public Keys down;
+
+        KeyboardState keyboard;
+        KeyboardState prevKeyboard;
 
         public block(float x2, float y2, sbyte type2, sbyte colorType2)
         {
@@ -34,7 +45,11 @@ namespace Puzzel_game
 
             colorType = colorType2;
 
-            maxMoveCountY = 32/2;
+            maxMoveCountY = 16*4;
+
+            left = Keys.Left;
+            right = Keys.Right;
+            down = Keys.Down;
 
             assignSprite();
         }
@@ -58,17 +73,60 @@ namespace Puzzel_game
                 {
                     cantMoveY = true;
                 }
+                else
+                {
+                    //cantMoveY = false;
+                }
+                if(x + 32 == b.x && y == b.y && active)
+                {
+                    cantMoveL = true;
+                }
+                else
+                {
+                    if (b.active)
+                    {
+                        cantMoveL = false;
+                    }
+                }
+                if (x - 32 == b.x && y == b.y && active)
+                {
+                    Console.WriteLine("can't move right");
+                    cantMoveR = true;
+                }
+                else
+                {
+                    if (b.active)
+                    {
+                        cantMoveR = false;
+                    }
+                }
             }
             if(cantMoveY)
             {
+                active = false;
                 moveCountY = 0;
             }
         }
         public void input()
         {
+            prevKeyboard = keyboard;
+            keyboard = Keyboard.GetState();
+
             if(active)
             {
-                
+                if(keyboard.IsKeyDown(down) && prevKeyboard.IsKeyUp(down) && !cantMoveY)
+                {
+                    y += Game1.grid(1);
+                    moveCountY = 0;
+                }
+                if (keyboard.IsKeyDown(left) && prevKeyboard.IsKeyUp(left) && !cantMoveY && !cantMoveR)
+                {
+                    x -= Game1.grid(1);
+                }
+                if (keyboard.IsKeyDown(right) && prevKeyboard.IsKeyUp(right) && !cantMoveY && !cantMoveL)
+                {
+                    x += Game1.grid(1);
+                }
             }
         }
         public void assignSprite()
