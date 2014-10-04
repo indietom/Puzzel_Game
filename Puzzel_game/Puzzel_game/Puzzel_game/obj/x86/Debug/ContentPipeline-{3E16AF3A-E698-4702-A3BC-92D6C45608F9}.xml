@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>spritesheet.png</Source>
+      <Name>spritesheet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\sul13atom\Documents\GitHub\Puzzel_Game\Puzzel_game\Puzzel_game\Puzzel_game\bin\x86\Debug\Content\spritesheet.xnb</Output>
+      <Time>2014-10-04T11:36:31.7731679+02:00</Time>
+    </Item>
+    <Item>
+      <Source>font.png</Source>
+      <Name>font</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>FontTextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\sul13atom\Documents\GitHub\Puzzel_Game\Puzzel_game\Puzzel_game\Puzzel_game\bin\x86\Debug\Content\font.xnb</Output>
+      <Time>2014-10-04T00:42:55.5104505+02:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <ContentProjectGUID>{3E16AF3A-E698-4702-A3BC-92D6C45608F9}</ContentProjectGUID>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>Reach</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Users\sul13atom\Documents\GitHub\Puzzel_Game\Puzzel_game\Puzzel_game\Puzzel_gameContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\sul13atom\Documents\GitHub\Puzzel_Game\Puzzel_game\Puzzel_game\Puzzel_game\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\sul13atom\Documents\GitHub\Puzzel_Game\Puzzel_game\Puzzel_game\Puzzel_game\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\sul13atom\Documents\GitHub\Puzzel_Game\Puzzel_game\Puzzel_game\Puzzel_game\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2011-09-01T16:22:30+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2011-09-01T16:22:30+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2011-09-01T16:22:30+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2011-09-01T16:22:30+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2011-09-01T16:22:30+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2011-09-01T16:22:30+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2014-08-22T18:40:29.7229089+02:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>

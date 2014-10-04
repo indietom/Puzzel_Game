@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puzzel_game", "Puzzel_game\Puzzel_game\Puzzel_game.csproj", "{CE00E2E3-C324-4CC7-8432-E2AF7ED6D714}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "Puzzel_gameContent", "Puzzel_game\Puzzel_gameContent\Puzzel_gameContent.contentproj", "{3E16AF3A-E698-4702-A3BC-92D6C45608F9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE00E2E3-C324-4CC7-8432-E2AF7ED6D714}.Debug|x86.ActiveCfg = Debug|x86
+		{CE00E2E3-C324-4CC7-8432-E2AF7ED6D714}.Debug|x86.Build.0 = Debug|x86
+		{CE00E2E3-C324-4CC7-8432-E2AF7ED6D714}.Release|x86.ActiveCfg = Release|x86
+		{CE00E2E3-C324-4CC7-8432-E2AF7ED6D714}.Release|x86.Build.0 = Release|x86
+		{3E16AF3A-E698-4702-A3BC-92D6C45608F9}.Debug|x86.ActiveCfg = Debug|x86
+		{3E16AF3A-E698-4702-A3BC-92D6C45608F9}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

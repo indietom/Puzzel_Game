@@ -1,0 +1,8 @@
+C:\Users\sul13atom\Documents\GitHub\Puzzel_Game\Puzzel_game\Puzzel_game\Puzzel_game\bin\x86\Debug\Puzzel_game.exe
+C:\Users\sul13atom\Documents\GitHub\Puzzel_Game\Puzzel_game\Puzzel_game\Puzzel_game\bin\x86\Debug\Puzzel_game.pdb
+C:\Users\sul13atom\Documents\GitHub\Puzzel_Game\Puzzel_game\Puzzel_game\Puzzel_game\obj\x86\Debug\Puzzel_game.csprojResolveAssemblyReference.cache
+C:\Users\sul13atom\Documents\GitHub\Puzzel_Game\Puzzel_game\Puzzel_game\Puzzel_game\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\sul13atom\Documents\GitHub\Puzzel_Game\Puzzel_game\Puzzel_game\Puzzel_game\obj\x86\Debug\Puzzel_game.exe
+C:\Users\sul13atom\Documents\GitHub\Puzzel_Game\Puzzel_game\Puzzel_game\Puzzel_game\obj\x86\Debug\Puzzel_game.pdb
+C:\Users\sul13atom\Documents\GitHub\Puzzel_Game\Puzzel_game\Puzzel_game\Puzzel_game\bin\x86\Debug\Content\spritesheet.xnb
+C:\Users\sul13atom\Documents\GitHub\Puzzel_Game\Puzzel_game\Puzzel_game\Puzzel_game\bin\x86\Debug\Content\font.xnb
