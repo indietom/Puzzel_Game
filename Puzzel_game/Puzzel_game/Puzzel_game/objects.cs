@@ -11,35 +11,45 @@ namespace Puzzel_game
 {
     class objects
     {
-        public float x;
-        public float y;
-       
-        public int imx;
-        public int imy;
-        public int width;
-        public int height;
-        
-        public short hp;
-        
-        public sbyte currentFrame;
-        public sbyte animationCount;
-        public sbyte direction;
+        public float x { get; set; }
+        public float y { get; set; }
 
-        public bool destroy;
-        public bool rotated;
-        public bool animationActive;
+        public int imx { get; set; }
+        public int imy { get; set; }
+        public int width { get; set; }
+        public int height { get; set; }
 
-        public float angle2;
-        public float angle;
-        public float speed;
-        public float scale_x;
-        public float scale_y;
-        public float veclocity_x;
-        public float veclocity_y;
+        public short hp { get; set; }
+
+        public sbyte currentFrame { get; set; }
+        public sbyte animationCount { get; set; }
+        public sbyte direction { get; set; }
+
+        public bool destroy { get; set; }
+        public bool rotated { get; set; }
+        public bool animationActive { get; set; }
+
+        public float angle2 { get; set; }
+        public float angle { get; set; }
+        public float speed { get; set; }
+        public float scale_x { get; set; }
+        public float scale_y { get; set; }
+        public float veclocity_x { get; set; }
+        public float veclocity_y { get; set; }
+
+        public float lerp(float x2, float y2, float t)
+        {
+            return x2 + t * (y2 - x2);
+        }
 
         public float distanceTo(float x2, float y2)
         {
             return (float)Math.Sqrt((x - x2) * (x - x2) + (y - y2) * (y - y2));
+        }
+
+        public float distanceTo(float x2, float y2, bool center)
+        {
+            return (float)Math.Sqrt((x + width / 2 - x2) * (x + width / 2 - x2) + (y + height / 2 - y2) * (y + height / 2 - y2));
         }
 
         public void angleMath()
@@ -79,6 +89,12 @@ namespace Puzzel_game
             return Frame2 * size + Frame2 + 1;
         }
 
+        public void checkOnScreen()
+        {
+            if (x >= 640 || x <= -width || y >= 480 || y <= -height)
+                destroy = true;
+        }
+
         public void setCoords(float x2, float y2)
         {
             x = x2;
@@ -104,6 +120,7 @@ namespace Puzzel_game
         {
             spritebatch.Draw(spritesheet, new Vector2(x, y), new Rectangle(imx, imy, width, height), Color.White);
         }
+
         public void drawSprite(SpriteBatch spritebatch, Texture2D spritesheet, Color color)
         {
             spritebatch.Draw(spritesheet, new Vector2(x, y), new Rectangle(imx, imy, width, height), color);
@@ -115,6 +132,22 @@ namespace Puzzel_game
         public void drawSpriteAngle(SpriteBatch spritebatch, Texture2D spritesheet, float size)
         {
             spritebatch.Draw(spritesheet, new Vector2(x, y), new Rectangle(imx, imy, width, height), Color.White, angle * (float)Math.PI / 180, new Vector2(width / 2, height / 2), size, SpriteEffects.None, 0);
+        }
+        public void drawSprite(SpriteBatch spritebatch, Texture2D spritesheet, float size, Color color)
+        {
+            spritebatch.Draw(spritesheet, new Vector2(x, y), new Rectangle(imx, imy, width, height), color, angle * (float)Math.PI / 180, new Vector2(width / 2, height / 2), size, SpriteEffects.None, 0);
+        }
+        public void drawSprite(SpriteBatch spritebatch, Texture2D spritesheet, float size, float rotation, Color color)
+        {
+            spritebatch.Draw(spritesheet, new Vector2(x, y), new Rectangle(imx, imy, width, height), color, rotation * (float)Math.PI / 180, new Vector2(width / 2, height / 2), size, SpriteEffects.None, 0);
+        }
+        public void drawText(SpriteBatch spriteBatch, SpriteFont font, float rotation, float size, string text, float x, float y, Color color2)
+        {
+            spriteBatch.DrawString(font, text.ToUpper(), new Vector2(x, y), color2, rotation, Vector2.Zero, size, SpriteEffects.None, 1);
+        }
+        public void drawText(SpriteBatch spriteBatch, SpriteFont font, float rotation, float size, string text, float x, float y, Color color2, Vector2 orgin)
+        {
+            spriteBatch.DrawString(font, text.ToUpper(), new Vector2(x, y), color2, rotation, orgin, size, SpriteEffects.None, 1);
         }
     }
 }
