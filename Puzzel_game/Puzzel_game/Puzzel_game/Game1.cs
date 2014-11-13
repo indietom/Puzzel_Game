@@ -21,6 +21,9 @@ namespace Puzzel_game
         static public Keys down;
         static public Keys up;
 
+        static public sbyte environment = 0;
+        Color envColor;
+
         public static bool playerBefore = false;
         public static bool playing = false;
         public static bool nukeDropped = false;
@@ -113,13 +116,14 @@ namespace Puzzel_game
         List<window> windows = new List<window>();
         List<effect> effects = new List<effect>();
         List<particle> particles = new List<particle>();
+        List<backgroundObject> backgroundObjects = new List<backgroundObject>();
 
         public static string gameState;
 
         protected override void Initialize()
         {
             player = new player();
-            
+
             fileManager.loadGame(ref player);
 
             gameState = "menu";
@@ -130,6 +134,12 @@ namespace Puzzel_game
             right = Keys.Right;
             down = Keys.Down;
             up = Keys.Up;
+
+            for (int i = 0; i < 640 / 32; i++)
+            {
+                backgroundObjects.Add(new backgroundObject(i * 32, 480 - 64 * 2, 1, 364, 32, 32, -1, 1));
+                backgroundObjects.Add(new backgroundObject(i * 32, 480 - 32 * 3, 1, 364, 32, 32, -1, 1));
+            }
 
             //blocks.Add(new block(grid(11), grid(0), 1, 2));
             //blocks.Add(new block(grid(10), grid(0), 1, 2));
@@ -211,11 +221,6 @@ namespace Puzzel_game
             prevGamepad = gamepad;
             gamepad = GamePad.GetState(PlayerIndex.One);
 
-            if(Mouse.GetState().LeftButton == ButtonState.Pressed)
-            {
-                particles.Add(new particle(Mouse.GetState().X, Mouse.GetState().Y, 1, 2, 0, Color.White, random.Next(-360, 0), random.Next(3, 8)));
-            }
-
             if(keyboard.IsKeyDown(Keys.F4) && prevKeyboard.IsKeyUp(Keys.F4))
             {
                 nukeDropped = true;
@@ -226,7 +231,7 @@ namespace Puzzel_game
             }
             if (keyboard.IsKeyDown(Keys.F3) && prevKeyboard.IsKeyUp(Keys.F3))
             {
-                blocks.Add(new block(grid(5), 0, 5, 2));
+                blocks.Add(new block(grid(5), 0, 4, 2));
                 fileManager.saveHighScore(player);
             }
 
@@ -262,7 +267,7 @@ namespace Puzzel_game
                 case "game":
                     menu.reset();
                     level.update();
-                    spawner.update(blocks, ref player);
+                    spawner.update(blocks, backgroundObjects, ref player);
                     if (keyboard.IsKeyDown(Keys.Escape) && prevKeyboard.IsKeyUp(Keys.Escape) || joyButtonHit(gamepad, prevGamepad) == 's')
                     {
                         gameState = "menu";
@@ -287,6 +292,11 @@ namespace Puzzel_game
                     {
                         b.update(blocks, effects, particles, ref player, level);
                         b.input();
+                    }
+                    foreach (backgroundObject bo in backgroundObjects)
+                    {
+                        bo.update();
+                        bo.movment();
                     }
 
                     foreach (window w in windows)
@@ -315,6 +325,11 @@ namespace Puzzel_game
                 if (particles[i].destroy)
                     particles.RemoveAt(i);
             }
+            for (int i = 0; i < backgroundObjects.Count; i++)
+            {
+                if (backgroundObjects[i].destroy)
+                    backgroundObjects.RemoveAt(i);
+            }
             base.Update(gameTime);
         }
 
@@ -333,8 +348,8 @@ namespace Puzzel_game
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
-
+            envColor = (environment == 0) ? Color.CornflowerBlue : Color.Black;
+            GraphicsDevice.Clear(envColor);
             spriteBatch.Begin();
             switch (gameState)
             {
@@ -351,8 +366,9 @@ namespace Puzzel_game
                     store.draw(spriteBatch, spritesheet, font);
                     break;
                 case "game":
+                    //foreach (block b in blocks) { b.drawSprite(spriteBatch, spritesheet, b.color); b.drawText(spriteBatch, font, 0, 1.0f, b.blockTouching.ToString(), b.x, b.y, Color.LightGreen);}
+                    foreach (backgroundObject bo in backgroundObjects) { bo.drawSprite(spriteBatch, spritesheet); }
                     drawGrid();
-                    foreach (block b in blocks) { b.drawSprite(spriteBatch, spritesheet, b.color); b.drawText(spriteBatch, font, 0, 1.0f, b.blockTouching.ToString(), b.x, b.y, Color.LightGreen);}
                     foreach (block b in blocks) { b.drawSprite(spriteBatch, spritesheet, b.color); }
                     foreach (effect e in effects) { e.drawSprite(spriteBatch, spritesheet); }
                     foreach (particle p in particles) { if (!p.rotated) { p.drawSprite(spriteBatch, spritesheet, p.color); } else { p.drawSprite(spriteBatch, spritesheet, 1.0f, p.rotation, p.color); } }

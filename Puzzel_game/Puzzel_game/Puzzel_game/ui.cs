@@ -36,8 +36,8 @@ namespace Puzzel_game
                 getInv[i] = 0;
             }
             invNames[0] = "Bombs";
-            invNames[1] = "Buckets";
-            invNames[2] = "Drills";
+            invNames[1] = "Drills";
+            invNames[2] = "Bucket";
             invNames[3] = "Nukes";
         }
 
@@ -53,8 +53,8 @@ namespace Puzzel_game
             getLevel = "LEVEL: " + level.currentLevel.ToString();
 
             getInv[0] = player.bombCount;
-            getInv[1] = player.bucketCount;
-            getInv[2] = player.drillCount;
+            getInv[1] = player.drillCount;
+            getInv[2] = player.bucketCount;
             getInv[3] = player.nukeCount;
 
             if(spawner.lost)
@@ -106,6 +106,7 @@ namespace Puzzel_game
             for (int i = 0; i < 4; i++)
             {
                 spriteBatch.Draw(spritesheet, new Vector2(640 - 48*3, 32 + i * (48+32)), new Rectangle(628, 1, 32, 32), Color.White);
+                spriteBatch.Draw(spritesheet, new Vector2(640 - 48 * 3, 32 + i * (48 + 32)), new Rectangle(661, frame(i), 32, 32), Color.White);
                 drawText(spriteBatch, font, 0, 0.5f, "Left: " + getInv[i].ToString(), 640 - 48*3, 64 + i * (48+32), Color.White);
                 drawText(spriteBatch, font, 0, 0.5f, invNames[i], 640 - 48 * 3, 32-10-5 + i * (48 + 32), Color.White);
             }

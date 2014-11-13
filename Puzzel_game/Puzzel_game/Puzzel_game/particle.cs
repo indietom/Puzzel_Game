@@ -37,10 +37,11 @@ namespace Puzzel_game
         public void update()
         {
             Random random = new Random();
-            checkOnScreen();
+            
             switch(type)
             {
                 case 1:
+                    checkOnScreen();
                     angleMath();
                     x += veclocity_x;
                     y += veclocity_y;
@@ -56,6 +57,8 @@ namespace Puzzel_game
                     speed += 0.1f;
                     x += veclocity_x;
                     y += veclocity_y;
+                    if (y >= 480)
+                        destroy = true;
                     break;
             }
             switch(colorType)

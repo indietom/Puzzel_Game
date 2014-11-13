@@ -153,9 +153,23 @@ namespace Puzzel_game
             {
                 if (b.type == 5 && b.y == y && !b.active && !active && b.colorType == colorType)
                 {
+                    for (int i = 0; i < 35; i++)
+                    {
+                        effects.Add(new effect(x + 16 + random.Next(-64, 64), y + 16 + random.Next(-64, 64), 0, 6, 298, 16, 8));
+                    }
+                    destroy = true;
                     blockClose = true;
                 }
-                if (b.type == 3 && type == 1)
+                if (b.type == 5 && b.y == y+32 && !b.active && !active && b.colorType == colorType)
+                {
+                    for (int i = 0; i < 35; i++)
+                    {
+                        effects.Add(new effect(x + 16 + random.Next(-64, 64), y + 16 + random.Next(-64, 64), 0, 6, 298, 16, 8));
+                    }
+                    destroy = true;
+                    blockClose = true;
+                }
+                if (b.type == 3 && type != 3)
                 {
                     if (b.y + 32 == y && b.x == x)
                     {
@@ -181,7 +195,7 @@ namespace Puzzel_game
                     }
                     if (y + Game1.grid(1) == b.y && x == b.x && colorType == b.colorType)
                     {
-                        b.blockTouching = blockTouching;
+                        //b.blockTouching = blockTouching;
                         //blockTouching = b.blockTouching;
                         filledBoxes[0] = true;
                         b.filledBoxes[0] = true;
@@ -198,7 +212,7 @@ namespace Puzzel_game
                     }
                     if (y - Game1.grid(1) == b.y && x == b.x && colorType == b.colorType)
                     {
-                        b.blockTouching = blockTouching;
+                        //b.blockTouching = blockTouching;
                         //blockTouching = b.blockTouching;
                         filledBoxes[1] = true;
                         b.filledBoxes[1] = true;
@@ -215,7 +229,7 @@ namespace Puzzel_game
                     }
                     if (x + Game1.grid(1) == b.x && y == b.y && colorType == b.colorType)
                     {
-                        b.blockTouching = blockTouching;
+                        //b.blockTouching = blockTouching;
                         //blockTouching = b.blockTouching;
                         filledBoxes[2] = true;
                         b.filledBoxes[2] = true;
@@ -232,7 +246,7 @@ namespace Puzzel_game
                     }
                     if (x - Game1.grid(1) == b.x && y == b.y && colorType == b.colorType)
                     {
-                        b.blockTouching = blockTouching;
+                        //b.blockTouching = blockTouching;
                         //blockTouching = b.blockTouching;
                         filledBoxes[3] = true;
                         b.filledBoxes[3] = true;
@@ -249,15 +263,16 @@ namespace Puzzel_game
                     }
                 }
 
-                if (colorType == b.colorType && b.distanceTo(x, y) <= 33)
+                if (colorType == b.colorType && b.distanceTo(x, y) <= 64 && !active && !b.active)
                 {
-                    blockTouching = b.blockTouching;
+                    if(blockTouching < b.blockTouching)
+                        blockTouching = b.blockTouching;
                 }
-                if (colorType == b.colorType && b.distanceTo(x, y) <= 33 && !active && !b.active)
+               
+                if (colorType == b.colorType && b.distanceTo(x, y) <= 64 && !active && !b.active)
                 {
                     if (blockTouching >= 3)
                     {
-                        Console.WriteLine("LE LEL");
                         blockTouching = 4;
                         b.blockTouching = 4;
                     }
@@ -303,22 +318,23 @@ namespace Puzzel_game
                     cantMoveL = true;
                 }
 
-                if(middleBlock && b.active && active && y == b.y)
+                if(middleBlock && b.active && active)
                 {
-                    if (b.rightBlock && b.cantMoveL && x + 32 == b.x)
+                    if (b.rightBlock && b.cantMoveL && x + 32 == b.x && y == b.y)
                     {
                         cantMoveL = true;
                     }
-                    if (b.leftBlock && b.cantMoveR && x - 32 == b.x)
+                    if (b.leftBlock && b.cantMoveR && x - 32 == b.x && y == b.y)
                     {
                         cantMoveR = true;
                     }
                 }
-                if (rightBlock && b.leftBlock && b.cantMoveR && b.active && active && b.y == y)
+
+                if (rightBlock && b.leftBlock && b.cantMoveR && b.active && active && b.y == y && x - 64 == b.x)
                 {
                     cantMoveR = true;
                 }
-                if (leftBlock && b.rightBlock && b.cantMoveL && b.active && active)
+                if (leftBlock && b.rightBlock && b.cantMoveL && b.active && active && x + 64 == b.x)
                 {
                     cantMoveL = true;
                 }
@@ -332,16 +348,34 @@ namespace Puzzel_game
                 {
                     cantMoveR = true;
                 }
-                if (x + 64 == b.x && y == b.y && active && !b.active || x + Game1.grid(2) == Game1.grid(15) && active)
+                if(middleBlock && b.leftBlock && b.y == y && x  - 32 == b.x)
+                {
+                    cantMoveR = b.cantMoveR;
+                }
+                if (middleBlock && b.rightBlock && b.y == y && x + 32 == b.x)
+                {
+                    cantMoveL = b.cantMoveL;
+                }
+                if (x + Game1.grid(2) == Game1.grid(15) && active)
                 {
                     if(middleBlock)
                         cantMoveL = true;
                 }
-                if (x - 64 == b.x && y == b.y && active && !b.active || x - Game1.grid(2) == Game1.grid(4) && active)
+                if (x - Game1.grid(2) == Game1.grid(4) && active)
                 {
                     if (middleBlock)
                         cantMoveR = true;
                 }
+                //if (x + 64 == b.x && y == b.y && active && !b.active || x + Game1.grid(2) == Game1.grid(15) && active)
+                //{
+                //    if(middleBlock)
+                //        cantMoveL = true;
+                //}
+                //if (x - 64 == b.x && y == b.y && active && !b.active || x - Game1.grid(2) == Game1.grid(4) && active)
+                //{
+                //    if (middleBlock)
+                //        cantMoveR = true;
+                //}
                 if(rightBlock)
                 {
                     if (x - 64+32 == b.x && y == b.y && active && !b.active || x - Game1.grid(3) == Game1.grid(4) && active)
@@ -367,22 +401,25 @@ namespace Puzzel_game
             }
             if (blockTouching >= 3 || blockClose)
             {
-                for (int i = 0; i < 5; i++)
+                if (!active)
                 {
-                    effects.Add(new effect(x + random.Next(32), y + random.Next(32), 0, 6, 298, 16, 4));
+                    for (int i = 0; i < 35; i++)
+                    {
+                        effects.Add(new effect(x + 16 + random.Next(-64, 64), y + 16 + random.Next(-64, 64), 0, 6, 298, 16, 8));
+                    }
+                    for (int i = 0; i < 15; i++)
+                    {
+                        particleType = (type == 4) ? particleType = 2 : particleType = 1;
+                        particleColor = (type == 4) ? particleColor = 0 : particleColor = 1;
+                        particles.Add(new particle(x + 16 + random.Next(-16, 16), y + 16 + random.Next(-16, 16), 1, particleType, particleColor, Color.White, random.Next(-360, 0), random.Next(5, 8)));
+                    }
+                    if (type == 4)
+                    {
+                        player.money += worth;
+                    }
+                    destroy = true;
+                    player.score += worth;
                 }
-                for (int i = 0; i < 15; i++)
-                {
-                    particleType = (type == 4) ? particleType = 2 : particleType = 1;
-                    particleColor = (type == 4) ? particleColor = 0 : particleColor = 1;
-                    particles.Add(new particle(x + 16 + random.Next(-16, 16), y + 16 + random.Next(-16, 16), 1, particleType, particleColor, Color.White, random.Next(-360, 0), random.Next(5, 8)));
-                }
-                if (type == 4)
-                {
-                    player.money += worth;
-                }
-                destroy = true;
-                player.score += worth;
             }
         }
         public void input()
